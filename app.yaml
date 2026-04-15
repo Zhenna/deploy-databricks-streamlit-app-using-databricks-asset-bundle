@@ -1,0 +1,24 @@
+command:
+  - streamlit
+  - run
+  - app.py
+  - --server.port
+  - "8000"
+  - --server.address
+  - "0.0.0.0"
+
+env:
+  - name: WAREHOUSE_ID
+    value: "4d8919d3ccb67b79"
+
+  - name: CATALOG
+    value: "demo"
+
+  - name: SCHEMA
+    value: "test"
+
+  - name: TABLE
+    value: "student_dataset"
+
+  - name: STREAMLIT_SERVER_HEADLESS
+    value: "true"

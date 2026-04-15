@@ -16,3 +16,10 @@ targets:
     default: true
     workspace:
       host: https://dbc-255a1a20-8312.cloud.databricks.com
+
+resources:
+  apps:
+    text2scatter_app:
+      name: text-to-scatterplot-app
+      source_code_path: .
+      description: Streamlit text-to-scatterplot demo

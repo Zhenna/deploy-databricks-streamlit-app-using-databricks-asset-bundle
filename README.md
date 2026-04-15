@@ -16,5 +16,5 @@ This is tutorial demo to deploy a text-to-scatterplot app to databricks through 
 ## Run locally
 ```bash
 pip install -r requirements.txt
-streamlit run app/app.py
+streamlit run app.py
 ```

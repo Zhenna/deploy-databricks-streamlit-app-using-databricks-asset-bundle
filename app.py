@@ -1,7 +1,9 @@
-import sys
+# import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+# from pathlib import Path
+
+# sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from dotenv import load_dotenv
 import pandas as pd
@@ -9,10 +11,11 @@ import streamlit as st
 from databricks.sdk import WorkspaceClient
 from databricks.sdk.service import sql as dbsql
 
-from src.text2scatter import parse_instruction, build_scatterplot, figure_to_png_bytes
+from text2scatter import parse_instruction, build_scatterplot, figure_to_png_bytes
 
 
-load_dotenv()
+# ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
+load_dotenv()  # dotenv_path=ENV_PATH)
 
 st.set_page_config(page_title="NL Scatterplot", layout="centered")
 st.title("Text To Scatterplot App Demo")
@@ -21,6 +24,8 @@ WAREHOUSE_ID = os.getenv("WAREHOUSE_ID")
 CATALOG = os.getenv("CATALOG")
 SCHEMA = os.getenv("SCHEMA")
 TABLE = os.getenv("TABLE")
+PROFILE = os.getenv("DATABRICKS_CONFIG_PROFILE")
+
 
 if not all([WAREHOUSE_ID, CATALOG, SCHEMA, TABLE]):
     raise ValueError("Missing required environment variables")
@@ -28,7 +33,8 @@ if not all([WAREHOUSE_ID, CATALOG, SCHEMA, TABLE]):
 
 @st.cache_data
 def load_data():
-    client = WorkspaceClient(profile="demo-profile")
+
+    client = WorkspaceClient(profile=PROFILE) if PROFILE else WorkspaceClient()
 
     query = f"SELECT * FROM {CATALOG}.{SCHEMA}.{TABLE}"
 
