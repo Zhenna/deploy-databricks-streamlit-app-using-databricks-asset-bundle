@@ -1,0 +1,18 @@
+bundle:
+  name: streamlit_text2scatter_app_bundle
+
+variables:
+  warehouse_id:
+    default: "4d8919d3ccb67b79"
+  catalog:
+    default: "demo"
+  schema:
+    default: "test"
+  table:
+    default: "student_dataset"
+
+targets:
+  demo_env:
+    default: true
+    workspace:
+      host: https://dbc-255a1a20-8312.cloud.databricks.com
